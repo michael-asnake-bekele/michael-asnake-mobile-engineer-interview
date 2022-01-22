@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_engineer_interview/models/employee.dart';
@@ -12,13 +13,14 @@ class EmployeeListNotifier with ChangeNotifier {
   }
 
   _generateEmployeeList(int length) {
+    Faker faker = Faker();
     employeeList = List.generate(
         length,
         (index) => Employee(
-              'John Doe',
-              '+2519112233',
-              'john.doe${index + 1}@gmail.com',
-              'Position ${index + 1}',
+              faker.person.name(),
+              '+${faker.phoneNumber.random.numberOfLength(13)}',
+              faker.internet.email(),
+              faker.company.position(),
               Random().nextDouble() * 100000,
             ));
     notifyListeners();
