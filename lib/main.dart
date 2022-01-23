@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:mobile_engineer_interview/models/employee.dart';
 import 'package:mobile_engineer_interview/screens/employee_list_page.dart';
 
-void main() {
+Future<void> main() async{
+  await Hive.initFlutter();
+  Hive.registerAdapter(EmployeeAdapter());
+  await Hive.openBox('employees_box');
   runApp(const MyApp());
 }
 
