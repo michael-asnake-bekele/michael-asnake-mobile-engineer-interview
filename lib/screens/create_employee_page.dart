@@ -4,6 +4,7 @@ import 'package:mobile_engineer_interview/models/employee.dart';
 import 'package:mobile_engineer_interview/providers/employee_list_provider.dart';
 import 'package:mobile_engineer_interview/utils/app_bar_builder.dart';
 import 'package:basic_utils/basic_utils.dart' hide Consumer;
+import 'package:mobile_engineer_interview/widgets/header_text_widget.dart';
 
 class CreateEmployeePage extends StatefulWidget {
   const CreateEmployeePage({Key? key, this.editEmployee, this.index}) : super(key: key);
@@ -40,16 +41,10 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, left: 16),
-              child: Text(
-                'CREATE EMPLOYEE PROFILE',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
+            const HeaderText(text: 'CREATE EMPLOYEE PROFILE'),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                  const EdgeInsets.symmetric(horizontal: 16.0),
               child: Form(
                 key: formKey,
                 child: Column(children: [

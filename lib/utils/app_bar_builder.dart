@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+/// creates a custom Appbar
 AppBar buildAppBar() {
   return AppBar(
     backgroundColor: Colors.white,
