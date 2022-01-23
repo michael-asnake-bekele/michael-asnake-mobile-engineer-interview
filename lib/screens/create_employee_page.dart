@@ -16,6 +16,11 @@ class CreateEmployeePage extends StatefulWidget {
 class _CreateEmployeePageState extends State<CreateEmployeePage> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Employee employee = Employee.empty();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController positionController = TextEditingController();
+  TextEditingController salaryController = TextEditingController();
 
   @override
   void initState() {
@@ -26,6 +31,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +68,9 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                         if (!input!.contains(' ')) {
                           return 'Please enter full name';
                         }
-                      }),
+                      },
+                    initialValue: employee.fullName,
+                      ),
                   getTextFormField(
                     hint: 'Phone Number *',
                     onChanged: (input) {
@@ -76,8 +84,8 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                         return requiredFieldValidator(input);
                       }
                     },
-                    isPhoneNumber: true
-
+                    initialValue: employee.phoneNumber,
+                    isPhoneNumber: true,
                   ),
                   getTextFormField(
                     hint: 'Email *',
@@ -93,13 +101,17 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                         return 'invalid email';
                       }
                     },
+                    initialValue: employee.email,
                   ),
                   getTextFormField(
                       hint: 'Position *',
                       onChanged: (input) {
                         employee.position = input;
                       },
-                      validator: requiredFieldValidator),
+                      validator: requiredFieldValidator,
+                    initialValue: employee.position,
+
+                  ),
                   getTextFormField(
                       hint: 'Salary *',
                       onChanged: (input) {
@@ -122,7 +134,10 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                         } catch (exception) {
                           return 'Invalid input, please enter a decimal number';
                         }
-                      }),
+                      },
+                    initialValue: '${employee.salary}',
+
+                  ),
                   Consumer(
                     builder: (context, ref, child) {
                       EmployeeListNotifier employeeListNotifier =
@@ -168,10 +183,10 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
     if(widget.editEmployee != null){
       //is edit mode
       employeeListNotifier.editEmployee(widget.index!, employee);
-      successMessage = 'Employee Successfully saved';
+      successMessage = 'Employee data successfully updated ';
+      Navigator.of(context).pop();
     }else{
       successMessage = 'New Employee Successfully saved';
-
       employeeListNotifier.addEmployee(employee);
     }
     formKey.currentState?.reset();
@@ -208,7 +223,8 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
       required void Function(String) onChanged,
       required String? Function(String?) validator,
       bool isDecimal = false,
-      bool isPhoneNumber = false}) {
+      bool isPhoneNumber = false,
+      String initialValue = ''}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -220,6 +236,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
         Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: TextFormField(
+            initialValue: initialValue,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
             ),

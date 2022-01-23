@@ -24,6 +24,12 @@ class Employee{
     this.salary
   );
 
-  Employee.empty();
+  Employee.empty(){
+    fullName = '';
+    phoneNumber = '';
+    email = '';
+    position = '';
+    salary = 0;
+  }
 
 }

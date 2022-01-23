@@ -51,7 +51,7 @@ class _EmployeeListPageState extends State<EmployeeListPage> {
                           employeeListNotifier.removeEmployee(index);
                         },
                         onEditTapped: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateEmployeePage(editEmployee: employee, index: index)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateEmployeePage(index: index, editEmployee: employee,)));
                         },
                         onTapped: () {
                           Navigator.of(context).push(MaterialPageRoute(
