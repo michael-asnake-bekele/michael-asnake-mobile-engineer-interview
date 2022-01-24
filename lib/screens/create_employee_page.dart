@@ -51,8 +51,8 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Create employee profile title
-            const HeaderText(text: 'CREATE EMPLOYEE PROFILE'),
+            /// Shows the appropriate title based on whether an employee is being edited or created
+            HeaderText(text: widget.editEmployee != null? 'EDIT EMPLOYEE PROFILE':'CREATE EMPLOYEE PROFILE'),
             /// New Employee form
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
