@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+/// For creating customized form text fields
+/// requires
+/// [String] hint to show as hint text of the field
+/// an[onChanged] VoidCallback function triggered when text is changed
+/// a [validator] function triggered for validting the entered text
+///
+/// optional
+/// [isDecimal] bool for setting keyboard type to number
+/// [isPhoneNumber] bool for setting keyboard type to phonenumber
+/// [initialValue] to set initial value of the field when first displayed
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
       {Key? key,
@@ -42,7 +52,12 @@ class CustomTextFormField extends StatelessWidget {
                 : isPhoneNumber
                 ? TextInputType.phone
                 : TextInputType.name,
+
+            /// auto validate the text when the user interacts with the text field
             autovalidateMode: AutovalidateMode.onUserInteraction,
+
+            /// set action next so that the user can click next on the keyboard
+            /// to focus on the next field
             textInputAction: TextInputAction.next,
           ),
         ),

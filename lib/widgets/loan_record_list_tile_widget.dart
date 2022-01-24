@@ -1,10 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_engineer_interview/screens/employee_details_page.dart';
 import 'package:sprintf/sprintf.dart';
 
+/// For displaying loan record record data in [EmployeeDetailsPage]
 class LoanRecordListTile extends StatefulWidget {
-
   const LoanRecordListTile({Key? key}) : super(key: key);
 
   @override
@@ -18,9 +19,8 @@ class _LoanRecordListTileState extends State<LoanRecordListTile> {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: 120,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey, width: 0)
-        ),
+        decoration:
+            BoxDecoration(border: Border.all(color: Colors.grey, width: 0)),
         child: Row(
           children: [
             SizedBox(
@@ -39,7 +39,10 @@ class _LoanRecordListTileState extends State<LoanRecordListTile> {
                     ),
                     Text(
                       'Jan',
-                      style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.grey[400]),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline5!
+                          .copyWith(color: Colors.grey[400]),
                     )
                   ],
                 ),
@@ -47,22 +50,25 @@ class _LoanRecordListTileState extends State<LoanRecordListTile> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children:  [
+                  children: [
                     Expanded(
                       flex: 1,
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children:[
+                        children: [
                           const Text('BORROWED:'),
                           Text(getRandomAmount()),
                         ],
                       ),
                     ),
-                    const Divider(thickness: 1.5,),
+                    const Divider(
+                      thickness: 1.5,
+                    ),
                     Expanded(
                       flex: 1,
                       child: Row(
@@ -74,18 +80,18 @@ class _LoanRecordListTileState extends State<LoanRecordListTile> {
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
             ),
           ],
         ),
-
       ),
     );
   }
-  String getRandomAmount(){
-    return sprintf('\$ %.2f',[Random().nextDouble() * 10000]);
+
+  /// generates random amount of money for displaying as a loan receivable or borrowed amount
+  String getRandomAmount() {
+    return sprintf('\$ %.2f', [Random().nextDouble() * 10000]);
   }
 }

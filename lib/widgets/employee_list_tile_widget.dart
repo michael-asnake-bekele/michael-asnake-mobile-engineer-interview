@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_engineer_interview/models/employee.dart';
 
+/// For displaying employee list item data
+///
+/// Accepts
+/// [employee] to populate employee data
+///
+/// [onDeleteTapped] a [VoidCallback] which is called when delete button is clicked
+///
+/// [onEditTapped] a [VoidCallback] which is called when edit button is clicked
+///
+/// [onTapped] a [VoidCallback] which is called when the list item is tapped
+///
+/// [disableGestures] a [bool] which is controls whether or not the listener callbacks are called.
+/// created for disabling menu functionality it's set to false by default
 class EmployeeListTile extends StatefulWidget {
   const EmployeeListTile({
     Key? key,
@@ -14,9 +27,9 @@ class EmployeeListTile extends StatefulWidget {
   }) : super(key: key);
 
   final Employee employee;
-  final VoidCallback onDeleteTapped;
-  final VoidCallback onEditTapped;
-  final VoidCallback onTapped;
+  final VoidCallback? onDeleteTapped;
+  final VoidCallback? onEditTapped;
+  final VoidCallback? onTapped;
   final bool disableGestures;
 
   @override
@@ -34,12 +47,14 @@ class _EmployeeListTileState extends State<EmployeeListTile> {
       child: Material(
         child: InkWell(
           onLongPress: !widget.disableGestures?() {
+            /// Toggles menu visibility
             setState(() {
               isMenuVisible = !isMenuVisible;
             });
           }:null,
           onTap: !widget.disableGestures?(){
-            widget.onTapped();
+            widget.onTapped!();
+            /// hides menu
             setState(() {
               isMenuVisible = false;
             });
@@ -64,12 +79,6 @@ class _EmployeeListTileState extends State<EmployeeListTile> {
                         ),
                       ),
                     ),
-                    // Image.network(
-                    //   'https://www.w3schools.com/howto/img_avatar.png',
-                    //   width: 110,
-                    //   height: 120,
-                    //   fit: BoxFit.cover,
-                    // ),
                     const SizedBox(width: 16),
                     Container(
                       constraints: const BoxConstraints(minHeight: 120),

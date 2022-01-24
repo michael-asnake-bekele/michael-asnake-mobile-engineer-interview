@@ -8,6 +8,7 @@ import 'package:mobile_engineer_interview/widgets/custom_drawer_widget.dart';
 import 'package:mobile_engineer_interview/widgets/employee_list_widget.dart';
 import 'package:mobile_engineer_interview/widgets/header_text_widget.dart';
 
+/// For displaying employee list page
 class EmployeeListPage extends StatefulWidget {
   const EmployeeListPage({Key? key}) : super(key: key);
 

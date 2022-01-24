@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+/// For displaying header text in the app
 class HeaderText extends StatelessWidget {
   const HeaderText({
     Key? key,

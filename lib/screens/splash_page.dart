@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_engineer_interview/screens/employee_list_page.dart';
 
+/// for displaying a splash screen page on the app's startup
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
@@ -16,9 +17,9 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer timer = Timer(Duration(seconds: 2),_goToHomePage);
+    Timer timer = Timer(const Duration(seconds: 2),_goToHomePage);
   }
-
+  /// navigates to home page
   _goToHomePage(){
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EmployeeListPage()));
   }

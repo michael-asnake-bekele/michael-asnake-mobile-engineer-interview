@@ -20,6 +20,7 @@ class EmployeesList extends StatelessWidget {
       flex: 1,
       child: Stack(
         children: [
+          /// shows list of employees
           ListView.builder(
             itemCount: employeeListNotifier.employeesBox.length,
             padding: const EdgeInsets.only(bottom: 120),
@@ -41,6 +42,8 @@ class EmployeesList extends StatelessWidget {
               );
             },
           ),
+
+          /// shows No employees message if necessary
           Visibility(
             visible: employeeListNotifier.employeesBox.length == 0,
             child: Center(
@@ -66,7 +69,10 @@ class EmployeesList extends StatelessWidget {
       ),
     );
   }
-
+  /// Navigates to [EmployeeDetailsPage] with required data
+  ///
+  /// requires [employee] to pass data to details page and
+  /// [context] to create [EmployeeDetailsPage]
   void _goToEmployeeDetails(BuildContext context, Employee employee) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => EmployeeDetailsPage(
@@ -92,7 +98,11 @@ class EmployeesList extends StatelessWidget {
         );
   }
   
-  /// shows delete confirmation alert dialog 
+  /// shows delete confirmation alert dialog
+  /// requires
+  /// [BuildContext] for showing the dialog
+  /// [Employee] object for deletion
+  /// [index] integer which corresponds to the employees position in the hive box
   void showDeleteConfirmationDialog(BuildContext context, Employee employee, int index) {
     showDialog(
         context: context,
@@ -124,6 +134,7 @@ class EmployeesList extends StatelessWidget {
             ));
   }
 
+  /// shows successfully deleted message
   _showDeletedSnackBar(BuildContext context) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Row(
