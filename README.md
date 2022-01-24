@@ -40,7 +40,7 @@ display the edit/delete menu
 - By opening the Drawer in the employee list page you can find the  Generate Random Employee List button which when clicked will generate random employee objects and saves them to the hive box
 
 # External Dependencies
-- [hive,  hive_flutter hive_generator and build_runner](https://docs.hivedb.dev/) for persistent storage
+- [hive,  hive_flutter, hive_generator and build_runner](https://docs.hivedb.dev/) for persistent storage
 
 - [flutter_riverpod](https://pub.dev/packages/flutter_riverpod) for state management
 
@@ -56,3 +56,10 @@ for changing app font family,
 - [cached_network_image](https://pub.dev/packages/cached_network_image) for caching fake employee image from fetched from network
 
 - [flutter_spinkit](https://pub.dev/packages/flutter_spinkit) for creating loading indicators in the splash page and for loading images
+
+<br/>
+<br/>
+
+---
+# Please Note
+## You will find a the built apk int the root folder with the name of app-release.apk
