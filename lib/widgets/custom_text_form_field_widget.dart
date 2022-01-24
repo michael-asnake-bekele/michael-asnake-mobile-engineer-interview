@@ -42,6 +42,8 @@ class CustomTextFormField extends StatelessWidget {
                 : isPhoneNumber
                 ? TextInputType.phone
                 : TextInputType.name,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

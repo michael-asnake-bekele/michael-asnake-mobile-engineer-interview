@@ -22,7 +22,7 @@ class CustomDrawer extends StatelessWidget {
                   return MaterialButton(
                     color: Colors.black,
                     child: const Text(
-                      'Add Random Employees',
+                      'Generate Random Employee List',
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {

@@ -106,7 +106,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                     validator: (input) {
                       input = input!.trim();
                       if (input.isEmpty) {
-                        return 'required';
+                        return 'this field is required';
                       }
                       if (!EmailUtils.isEmail(input)) {
                         return 'invalid email';

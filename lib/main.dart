@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobile_engineer_interview/models/employee.dart';
 import 'package:mobile_engineer_interview/screens/employee_list_page.dart';
+import 'package:mobile_engineer_interview/screens/splash_page.dart';
 
 Future<void> main() async{
   await Hive.initFlutter();
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.grey,
           fontFamily: GoogleFonts.montserrat().fontFamily
         ),
-        home: const EmployeeListPage(),
+        home: const SplashPage(),
         debugShowCheckedModeBanner: false,
 
       ),

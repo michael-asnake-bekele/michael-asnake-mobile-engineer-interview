@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_engineer_interview/models/employee.dart';
 
 class EmployeeListTile extends StatefulWidget {
@@ -50,15 +52,27 @@ class _EmployeeListTileState extends State<EmployeeListTile> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.network(
-                      'https://www.w3schools.com/howto/img_avatar.png',
+                    CachedNetworkImage(
+                      imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
                       width: 110,
                       height: 120,
                       fit: BoxFit.cover,
+                      placeholder: (context, url) => const Center(
+                        child: SpinKitSpinningLines(
+                          color: Colors.black,
+                          size: 56,
+                        ),
+                      ),
                     ),
+                    // Image.network(
+                    //   'https://www.w3schools.com/howto/img_avatar.png',
+                    //   width: 110,
+                    //   height: 120,
+                    //   fit: BoxFit.cover,
+                    // ),
                     const SizedBox(width: 16),
                     Container(
-                      constraints: BoxConstraints(minHeight: 120),
+                      constraints: const BoxConstraints(minHeight: 120),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
