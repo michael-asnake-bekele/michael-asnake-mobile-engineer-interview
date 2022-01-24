@@ -25,26 +25,18 @@ class EmployeesList extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 120),
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
-              Employee employee =
-              employeeListNotifier.employeesBox.getAt(index);
+              Employee employee = employeeListNotifier.employeesBox.getAt(index);
               return EmployeeListTile(
                 key: UniqueKey(),
                 employee: employee,
                 onDeleteTapped: () {
-                  employeeListNotifier.removeEmployee(index);
+                  showDeleteConfirmationDialog(context, employee, index);
                 },
                 onEditTapped: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => CreateEmployeePage(
-                        index: index,
-                        editEmployee: employee,
-                      )));
+                  _goToEditPage(context, index, employee);
                 },
                 onTapped: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => EmployeeDetailsPage(
-                        employee: employee,
-                      )));
+                  _goToEmployeeDetails(context, employee);
                 },
               );
             },
@@ -73,5 +65,87 @@ class EmployeesList extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _goToEmployeeDetails(BuildContext context, Employee employee) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => EmployeeDetailsPage(
+              employee: employee,
+            )));
+  }
+
+  /// Navigates to [CreateEmployeePage] with required edit data
+  ///
+  /// accepts [index] of the employee list (which corresponds to the index of
+  /// the employee in the hive box)
+  ///
+  /// accepts [employee] which has the current employee data which will be used to populate to the edit form
+  void _goToEditPage(BuildContext context, int index, Employee employee) {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (context) => CreateEmployeePage(
+              index: index,
+              editEmployee: employee,
+            )
+          )
+        );
+  }
+  
+  /// shows delete confirmation alert dialog 
+  void showDeleteConfirmationDialog(BuildContext context, Employee employee, int index) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text('Delete employee?'),
+              content: Text('Are you sure you want to delete ${employee.fullName}?'),
+              actions: [
+                /// Yes button
+                MaterialButton(
+                    child: const Text('Yes'),
+                    onPressed: () {
+                      /// remove employee from hive box
+                      employeeListNotifier.removeEmployee(index);
+                      /// dismiss dialog
+                      Navigator.pop(context);
+                      _showDeletedSnackBar(context);
+                    }
+                ),
+
+                /// Cancel button
+                MaterialButton(
+                    child: const Text('Cancel'),
+                    onPressed: () {
+                      /// dismiss dialog
+                      Navigator.pop(context);
+                    }
+                ),
+              ],
+            ));
+  }
+
+  _showDeletedSnackBar(BuildContext context) {
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+          Text(
+            'Successfully deleted employee',
+            style: Theme.of(context)
+                .textTheme
+                .bodyText2!
+                .copyWith(color: Colors.white),
+          ),
+        ],
+      ),
+      backgroundColor: Colors.green[600],
+      duration: const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
+    ));
   }
 }

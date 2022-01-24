@@ -29,7 +29,7 @@ class _EmployeeDetailsPageState extends State<EmployeeDetailsPage> {
               onTapped: (){},
               disableGestures: true,
             ),
-            SizedBox(
+            const SizedBox(
               height: 32,
             ),
             DateHeader(year: '2022'),

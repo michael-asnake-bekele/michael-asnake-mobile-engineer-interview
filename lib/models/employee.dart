@@ -29,7 +29,7 @@ class Employee{
     phoneNumber = '';
     email = '';
     position = '';
-    salary = 0;
+    salary = -1;
   }
 
 }

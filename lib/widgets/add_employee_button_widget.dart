@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_engineer_interview/screens/create_employee_page.dart';
+import 'package:mobile_engineer_interview/screens/employee_list_page.dart';
+
+/// Button for navigating from [EmployeeListPage] to [CreateEmployeePage]
 class AddEmployeeButton extends StatelessWidget {
   const AddEmployeeButton({
     Key? key,

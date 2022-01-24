@@ -36,7 +36,12 @@ class _EmployeeListTileState extends State<EmployeeListTile> {
               isMenuVisible = !isMenuVisible;
             });
           }:null,
-          onTap: !widget.disableGestures?widget.onTapped:null,
+          onTap: !widget.disableGestures?(){
+            widget.onTapped();
+            setState(() {
+              isMenuVisible = false;
+            });
+          }:null,
           child: Stack(
             children: [
               Container(
